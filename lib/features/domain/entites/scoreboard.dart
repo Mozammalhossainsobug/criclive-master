@@ -1,6 +1,6 @@
 import 'package:criclive/features/domain/entites/team_info.dart';
 
-class Score {
+class ScoreBoard {
   final String id;
   final String name;
   final String matchType;
@@ -12,7 +12,7 @@ class Score {
   final bool matchStarted;
   final bool matchEnded;
 
-  Score({
+  ScoreBoard({
     required this.id,
     required this.name,
     required this.matchType,

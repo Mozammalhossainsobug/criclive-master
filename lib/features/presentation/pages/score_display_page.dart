@@ -16,7 +16,6 @@ class ScoreDisplay extends StatelessWidget {
         itemBuilder: (context, index) {
           ScoreModel score = scores[index];
           List<TeamInfo> teams = score.teamInfo;
-
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ScoreCard(

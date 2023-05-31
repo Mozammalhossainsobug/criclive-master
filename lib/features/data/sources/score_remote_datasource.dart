@@ -15,6 +15,7 @@ class ScoreRemoteDataSource {
       if (jsonData['data'] != null) {
         List<dynamic> jsonList = jsonData['data'];
       //  print('came here');
+     // print(jsonList);
         if (jsonList.isNotEmpty) {
         //  print(jsonList);
           List<ScoreModel> data = jsonList

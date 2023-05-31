@@ -11,9 +11,9 @@ class TeamInfo {
 
   factory TeamInfo.fromJson(Map<String, dynamic> json) {
     return TeamInfo(
-      name: json['name'],
-      shortName: json['shortname'],
-      img: json['img'],
+      name: json['name'] as String,
+      shortName: json['shortname'] as String,
+      img: json['img'] as String,
     );
   }
 }

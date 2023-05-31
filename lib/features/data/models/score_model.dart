@@ -1,52 +1,61 @@
+import 'package:criclive/features/domain/entites/scoreboard.dart';
 import 'package:criclive/features/domain/entites/team_info.dart';
 
-class ScoreModel {
-  late String id;
-  late String name;
-  late String matchType;
-  late String status;
-  late String venue;
-  late String date;
-  late String dateTimeGMT;
-  late List<String> teams;
-  late List<TeamInfo> teamInfo;
-  late List<Map<String, dynamic>> score; // Update the score property type
-  late String seriesId;
-  late bool fantasyEnabled;
-  late bool bbbEnabled = false;
-  late bool hasSquad = false;
-  late bool matchStarted = false;
-  late bool matchEnded = false;
+class ScoreModel extends ScoreBoard {
+  final DateTime date;
+  final String seriesId;
+  final bool fantasyEnabled;
+  final bool bbbEnabled;
+  final bool hasSquad;
 
   ScoreModel({
-    required this.id,
-    required this.name,
-    required this.matchType,
-    required this.status,
-    required this.venue,
     required this.date,
-    required this.dateTimeGMT,
-    required this.teams,
-    required this.teamInfo,
-    required this.score,
     required this.seriesId,
     required this.fantasyEnabled,
-  });
+    required this.bbbEnabled,
+    required this.hasSquad,
+    required String id,
+    required String name,
+    required String matchType,
+    required String status,
+    required String venue,
+    required DateTime dateTimeGMT,
+    required List<String> teams,
+    required List<TeamInfo> teamInfo,
+    required bool matchStarted,
+    required bool matchEnded,
+  }) : super(
+          id: id,
+          name: name,
+          matchType: matchType,
+          status: status,
+          venue: venue,
+          dateTimeGMT: dateTimeGMT,
+          teams: teams,
+          teamInfo: teamInfo,
+          matchStarted: matchStarted,
+          matchEnded: matchEnded,
+        );
 
-  ScoreModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    matchType = json['matchType'];
-    status = json['status'];
-    venue = json['venue'];
-    date = json['date'];
-    dateTimeGMT = json['dateTimeGMT'];
-    teams = List<String>.from(json['teams']);
-    if (json['teamInfo'] != null) {
-      teamInfo = List<TeamInfo>.from(json['teamInfo'].map((team) => TeamInfo.fromJson(team)));
-    }
-    score = List<Map<String, dynamic>>.from(json['score']); // Update the score assignment
-    seriesId = json['series_id'];
-    fantasyEnabled = json['fantasyEnabled'];
-  }
+  factory ScoreModel.fromJson(Map<String, dynamic> json) {
+  return ScoreModel(
+    id: json['id'] as String? ?? 'not found',
+    name: json['name'] as String? ?? 'not found',
+    matchType: json['matchType'] as String? ?? 'not found',
+    status: json['status'] as String? ?? 'not found',
+    venue: json['venue'] as String? ?? 'not found',
+    date: DateTime.parse(json['date'] as String? ?? ''),
+    dateTimeGMT: DateTime.parse(json['dateTimeGMT'] as String? ?? ''),
+    teams: List<String>.from(json['teams'] as List<dynamic>),
+    teamInfo: (json['teamInfo'] as List<dynamic>)
+        .map((item) => TeamInfo.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    seriesId: json['series_id'] as String? ?? 'not found',
+    fantasyEnabled: json['fantasyEnabled'] as bool? ?? false,
+    bbbEnabled: json['bbbEnabled'] as bool? ?? false,
+    hasSquad: json['hasSquad'] as bool? ?? false,
+    matchStarted: json['matchStarted'] as bool? ?? false,
+    matchEnded: json['matchEnded'] as bool? ?? false,
+  );
+}
 }

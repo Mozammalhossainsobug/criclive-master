@@ -13,10 +13,10 @@ class Score {
 
   factory Score.fromJson(Map<String, dynamic> json) {
     return Score(
-      runs: json['r'],
-      wickets: json['w'],
-      overs: json['o'],
-      inning: json['inning'],
+      runs: json['r'] as int,
+      wickets: json['w'] as int,
+      overs: json['o'] as int,
+      inning: json['inning'] as String,
     );
   }
 }
