@@ -1,19 +1,19 @@
 class TeamInfo {
-  final String name;
-  final String shortName;
-  final String img;
+  final String? name;
+  final String? shortName;
+  final String? img;
 
   TeamInfo({
-    required this.name,
-    required this.shortName,
-    required this.img,
+     this.name,
+    this.shortName,
+    this.img,
   });
 
   factory TeamInfo.fromJson(Map<String, dynamic> json) {
     return TeamInfo(
-      name: json['name'] as String,
-      shortName: json['shortname'] as String,
-      img: json['img'] as String,
+      name: json['name'] as String?,
+      shortName: json['shortname'] as String?,
+      img: json['img'] as String?,
     );
   }
 }
